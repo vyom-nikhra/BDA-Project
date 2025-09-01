@@ -39,26 +39,26 @@ A functional, small-scale simulation of the Hadoop Distributed File System (HDFS
 The easiest way to interact with HDFS is through the modern web interface:
 
 1. **Install Dependencies:**
+
    ```bash
    # Set up virtual environment (recommended)
-   python3 -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: .venv\Scripts\activate
+
    # Install required packages
    pip install -r requirements.txt
    # OR install individually:
    # pip install streamlit flask requests
    ```
-
 2. **Start the Web Interface:**
+
    ```bash
    streamlit run hdfs_web_app.py
    ```
-
 3. **Open in Browser:**
    Navigate to `http://localhost:8501` in your web browser
-
 4. **Use the Interface:**
+
    - Click "🚀 Start Cluster" in the sidebar to launch HDFS nodes
    - Use the "📤 Upload File" tab to add files to HDFS
    - Use the "📥 Download File" tab to retrieve files from HDFS
@@ -83,7 +83,6 @@ sudo apt install python3-flask python3-requests
 #### Run
 
 1. Place the file you want to add to HDFS (e.g., `my_large_file.bin`, \~100 MB) in your working directory.
-
 2. Open **one** terminal and run:
 
 ```bash
@@ -214,6 +213,7 @@ The Streamlit web interface provides:
 ## 🔧 API Endpoints
 
 ### NameNode (Port 5000)
+
 - `GET /` - Health check
 - `POST /get_write_plan` - Get block placement plan for writing
 - `POST /commit_write` - Commit file metadata after writing
@@ -221,7 +221,7 @@ The Streamlit web interface provides:
 - `GET /list_files` - List all files in HDFS
 
 ### SlaveNode (Ports 5001-5004)
-- `GET /` - Health check  
+
+- `GET /` - Health check
 - `POST /write_block/<block_id>` - Store a block
 - `GET /read_block/<block_id>` - Retrieve a block
-
